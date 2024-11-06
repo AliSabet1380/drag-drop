@@ -8,6 +8,7 @@ import {
   Draggable,
   type DropResult,
 } from "@hello-pangea/dnd";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const dummy_Data = [
   { id: 1, title: "item 1", idx: 0 },
@@ -82,6 +83,14 @@ export const DragNDrop = () => {
           )}
         </Droppable>
       </DragDropContext>
+    </div>
+  );
+};
+
+export const DragNDropSkeleton = () => {
+  return (
+    <div className="w-full h-full flex item-center justify-center">
+      <Skeleton className="w-96 h-[273px]" />
     </div>
   );
 };

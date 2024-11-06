@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-import { DragNDrop } from "./_components/darg-n-drop";
+import { DragNDrop, DragNDropSkeleton } from "./_components/darg-n-drop";
 
 const Home = () => {
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<DragNDropSkeleton />}>
       <DragNDrop />
     </Suspense>
   );
