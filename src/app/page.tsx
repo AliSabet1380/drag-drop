@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { z } from "zod";
+import { parseAsJson, useQueryState } from "nuqs";
 import {
   DragDropContext,
   Droppable,
@@ -28,9 +29,15 @@ const reorder = (
   return result;
 };
 
+const Dummy_Data_Schema = z.array(
+  z.object({ id: z.number(), title: z.string(), idx: z.number() })
+);
+
 const Home = () => {
-  const [items, setItems] =
-    useState<{ id: number; title: string }[]>(dummy_Data);
+  const [items, setItems] = useQueryState(
+    "items",
+    parseAsJson(Dummy_Data_Schema.parse).withDefault(dummy_Data)
+  );
   const onDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
 
